@@ -168,7 +168,7 @@ Try {
         }
 
         ## <Perform Installation tasks here>
-        Execute-Process -Path "$dirFiles\MSU_CP63.exe" -Parameters '/silent' -WindowStyle 'Hidden'
+        Execute-Process -Path "$dirFiles\MSU_CP63.exe"
 
 		# Copies file that kills explorer on login
 		Copy-File -Path "$dirSupportFiles\_signage.bat" -Destination "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup"
@@ -192,7 +192,7 @@ Try {
         [String]$installPhase = 'Pre-Uninstallation'
 
         ## Show Welcome Message, close Internet Explorer with a 60 second countdown before automatically closing
-        Show-InstallationWelcome -CloseApps 'processName' -CloseAppsCountdown 60
+        Show-InstallationWelcome -CloseApps 'signage,contentplayermonitor,contentplayerservice' -CloseAppsCountdown 60
 
         ## Show Progress Message (with the default message)
         Show-InstallationProgress
@@ -282,8 +282,8 @@ Catch {
 # SIG # Begin signature block
 # MIImVAYJKoZIhvcNAQcCoIImRTCCJkECAQExDzANBglghkgBZQMEAgEFADB5Bgor
 # BgEEAYI3AgEEoGswaTA0BgorBgEEAYI3AgEeMCYCAwEAAAQQH8w7YFlLCE63JNLG
-# KX7zUQIBAAIBAAIBAAIBAAIBADAxMA0GCWCGSAFlAwQCAQUABCALcctfgN8M6bJg
-# MnVHFvzyHiErrTzJg/xj1i6bs93ngaCCH8AwggVvMIIEV6ADAgECAhBI/JO0YFWU
+# KX7zUQIBAAIBAAIBAAIBAAIBADAxMA0GCWCGSAFlAwQCAQUABCAV3ynK7pJQM+76
+# zsnt1XAyXttPtFsVhSIpNeiijuKHxKCCH8AwggVvMIIEV6ADAgECAhBI/JO0YFWU
 # jTanyYqJ1pQWMA0GCSqGSIb3DQEBDAUAMHsxCzAJBgNVBAYTAkdCMRswGQYDVQQI
 # DBJHcmVhdGVyIE1hbmNoZXN0ZXIxEDAOBgNVBAcMB1NhbGZvcmQxGjAYBgNVBAoM
 # EUNvbW9kbyBDQSBMaW1pdGVkMSEwHwYDVQQDDBhBQUEgQ2VydGlmaWNhdGUgU2Vy
@@ -457,32 +457,32 @@ Catch {
 # MSswKQYDVQQDEyJTZWN0aWdvIFB1YmxpYyBDb2RlIFNpZ25pbmcgQ0EgUjM2AhEA
 # pU3fcPvc8UxUgrjysXLKMTANBglghkgBZQMEAgEFAKCBhDAYBgorBgEEAYI3AgEM
 # MQowCKACgAChAoAAMBkGCSqGSIb3DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQB
-# gjcCAQsxDjAMBgorBgEEAYI3AgEVMC8GCSqGSIb3DQEJBDEiBCBGxNVVhr442nDK
-# Vfao71N3+IJ1aSqpX522oFT8MfKNcTANBgkqhkiG9w0BAQEFAASCAYBPC/ArkbcZ
-# 2w3l9ZYjwaEHIzKeQIded/8wC42kbhFLsIb7LDE/A0aZ0DTA4xYlXZ5Hil/X8A/0
-# kG4WrajR6cS7dXbtggZVq5P3QYVpt0m8OkZ1zuaWOguoJtcIQjaKHjO4GvfIrdNa
-# xrwGT8aoKnwA2KNCywJKEcR4uc2BTqpdmRBYkaQdn0fb0DZ9QTzFeayKAd20uTa5
-# wKXBgJw+kGxit9FWcw+lg9PLil33IQgc9b1xyjJSKktFxG/3TS9ofjYg37uN/t8W
-# njz42cpKPUDzQkU+yq8W2lQnlzlbOJOkFEJYEmP3dPUKrdMM018zgeZL5GceRNuD
-# 9pFnOHR32qWz6VlOt9CHBZ8T1tVPS3Sf+pEt2JIQOVLN9Q8Xk/YjIHNchK2T9xQe
-# xdhY0+swue+KdJGe2ZoQeel/L+dDOd9sHWhJZJRarTbiDTwSpnb5eWvmr17i5Z8I
-# s5JHkpc4O0evL1adpd/HjmVwyFij8WRJf1rYIznEMJMf8IowdjO+ldShggNLMIID
+# gjcCAQsxDjAMBgorBgEEAYI3AgEVMC8GCSqGSIb3DQEJBDEiBCCbQav+CPs7QU9N
+# eJBAFwGPnNuJ+slTydE6N8GAW7ureTANBgkqhkiG9w0BAQEFAASCAYAd8fqF98++
+# frmgR4DLc0AvNZSpCvujeAwNx0AoGNOp1b6cVghrV+1eOctXB7W1ft56u+KWR1F9
+# yQvQFg8koOOqmhasdNYce+yGdrtT6gMpAwOj6DfVy7GX332bfqdun4z5OgRdBfao
+# JybK+UmGwCSPi4tWAxkxASkvC54f9cmgD/KKdA+H4xQCxyCOgWxZm2/ZVzioZUJ3
+# ZXT/mX/OY5V2xNMRQEtSwCZleMfjrv2Hr9cKrG54v4TiZjrf4yXzQnxu5Npvcrzw
+# dCNv+LDMsZuDUKRtFzhJtZ/zoUyj9umgd/hV8UbkzUdlRuc8rpanWfiZWiUC62rC
+# W2VFvzubxBOWm+tKKxDBb0r3A3vl3AdqwBRt4pwU9GvmRi0H2eLZOGS+8MmGUsCX
+# ol3LokQlwa69kJqiws6Mpcq/+HPeD38DQ0AlJJkBLBhx1mIMETu9xQgUyB9j/l+C
+# ecjHJZvWjAbJYg5kLuvBJCKm629CHxP5McFVRPFQYTeKns2AI/2okKahggNLMIID
 # RwYJKoZIhvcNAQkGMYIDODCCAzQCAQEwgZEwfTELMAkGA1UEBhMCR0IxGzAZBgNV
 # BAgTEkdyZWF0ZXIgTWFuY2hlc3RlcjEQMA4GA1UEBxMHU2FsZm9yZDEYMBYGA1UE
 # ChMPU2VjdGlnbyBMaW1pdGVkMSUwIwYDVQQDExxTZWN0aWdvIFJTQSBUaW1lIFN0
 # YW1waW5nIENBAhA5TCXhfKBtJ6hl4jvZHSLUMA0GCWCGSAFlAwQCAgUAoHkwGAYJ
-# KoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMjMwOTAxMjAy
-# MjQ3WjA/BgkqhkiG9w0BCQQxMgQwLa24fQwkYckbUXfyDWw/N+wkPlivx9pd91DK
-# tVJ5wy5ZVWN/4xs/hd/NTTVllgkUMA0GCSqGSIb3DQEBAQUABIICABPT09KVRS8h
-# k9wKpPbjFYbaBG338cG0+i367HN3tgsapGiHUkjtJ6s0vt27hucnA3njekZcPprU
-# 6ri1NmLf/GWDDJ3z0dnRsR9qRkHtcUHdHaaDjpyag289tBshpYHjK/6tuZhcuYyi
-# 2oYp5lopXSxouVMRfCvpCKdyJSNCtcje90cGvoJhu6oAowRM57CMwj586Tcqh/Kn
-# +k5BqwvKCS/3wcykakpGZka68xxNNCnPTksD1iq4ZV8tU3KS1xxRJt7dqRuqyKW1
-# LF0XbI8tJbnaENAYWwlzfTeRVXCETSDWWunxhWtaj0gt+dx4tR3OtyVwkXxn0cqS
-# 6jJMyNPl73dBj7k/VJje5aHvb7YRTql7NBCdbQVKPWzd8YNuLM7AFbBu42kV2pms
-# oj7SJYemIGMK81zOTa5B80ZiFu9XWGBqUKDaGuhDYVSyGGXf7xy1gHACn0nBviIC
-# JhtFEOI9QZ1MGx3aajme9zVr5/OKBtL23CCTle4I3TgxV5arWLw76Hf7AzmknDDK
-# j2b1ADETdF/6YTGd4GLIN2lefraxj8eJE/5k7ICUxBD/v76HCwDlPH58LilsLwFT
-# UCA+FJe+fTbIm46j6pWK3cE45vEVonOgnq6SUFhUM7PMALnwLSoqo6YbUU3u0X9t
-# 82oNYvfu3YWmrt8NQ09PSIrPjfG+evIX
+# KoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMjMwOTExMTU0
+# NDMwWjA/BgkqhkiG9w0BCQQxMgQwSA9pTkzaMW1SCOmbXxnWqqDrn+VQAgTgrC+H
+# SJ3QU7VyHurXPYSzUkDgYS4Fqs99MA0GCSqGSIb3DQEBAQUABIICADNtW/aEfJa/
+# gVzdQE85Zcc2xf7Efr6FvcJNYj/AgfPagBXbGEaSyHbRfPJplbwGd3oQJoUsHX1I
+# CgkPbvO8ctWsseCmboczYlj/AuDDqih0IeaqfwcDOR6WVytVvfY4lQgG1O7BF63W
+# aFLbpnjH/nPNbLdH6a3zKK1pdB66NQBeJeUoI0esMzzpMNkTjKUxrW7hU5s6iLY6
+# 2LUbo44wJHDHChoQPCJf0oiSGGNYAhwfyPwTcSezvojbvNU8AxfpbIQABHGEdOhO
+# X8o7IhkDrdCiDGsnI0F0wwm/J5NhsHb7BxK2XA6W+ynqfjqw+NfTl5hS0afsykZ3
+# Zd6XqTcL9UiWvxr/McQ8ejHLxg+yLpWKCgLqfPP+TgZC+z3JQpesA+9N/DNLM3Lf
+# /722mQP4WS9LrnWTSbAOiEl82LDN1Oy6RV1ryECUgilKpB4MPuL1v272/y9BPB93
+# bNbZYTR4KdKCvG7NlT4o0Orw8GrzPk7nTGG8ZQ0iUlDc3bGGAedoG8eTlxt2EE4S
+# 8DpHwtu9ir336lils7jBWp/9tNp9vqm7TJqPHG0etf/ZifJCHD451sdTlJoQ8iHx
+# VS+h1qYzSYg1YwXVQpkOqsWtx1tMJweBt0jiuLcMHTV7LIn8TcQhZTMI65vF2/Js
+# Mg766989MeHBzpy3Tunn828wchmuw9l9
 # SIG # End signature block
